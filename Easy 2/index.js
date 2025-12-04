@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
+const middleware = require("./middleware");
 
 
-app.get("/protected", (req, res) => {
-  // TODO: Send the response: Access granted at <timestamp>
-  
+app.get("/protected", middleware, (req, res) => {
+  res.send("Access granted at " + req.timestamp);
 });
 
 
