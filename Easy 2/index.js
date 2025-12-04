@@ -1,10 +1,13 @@
 const express = require("express");
 const app = express();
 
-
-app.get("/protected", (req, res) => {
+function addTimeStamp(req , res , next){
+  req.timeStamp = new Date();
+  next();
+}
+app.get("/protected", addTimeStamp ,(req, res) => {
   // TODO: Send the response: Access granted at <timestamp>
-  
+  res.send(`Access granted at ${req.timeStamp}`)
 });
 
 
